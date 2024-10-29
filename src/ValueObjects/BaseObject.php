@@ -36,15 +36,15 @@ class BaseObject
     {
         $value = $this->beforeValidate($value);
 
-        $rules = $this->getValidationRules(static::$validateKey);
+        $rules = $this->getValidationRules(self::$validateKey);
         if (empty($rules)) {
             return $value;
         }
-        $attributes = $this->getValidationAttribute(static::$validateKey);
-        $messages = $this->getValidationMessages(static::$validateKey);
+        $attributes = $this->getValidationAttribute(self::$validateKey);
+        $messages = $this->getValidationMessages(self::$validateKey);
 
-        $results = Validator::make([static::$validateKey => $value], $rules, $messages, $attributes)->validate();
-        $value = $results[static::$validateKey];
+        $results = Validator::make([self::$validateKey => $value], $rules, $messages, $attributes)->validate();
+        $value = $results[self::$validateKey];
 
         return $this->afterValidate($value);
     }
