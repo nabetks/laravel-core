@@ -18,7 +18,7 @@ test('電話番号フォーマット変換確認', function ($tel, $results) {
 
 test('電話番号の入力値の確認', function ($tel, $results) {
     try {
-        $number = new PhoneNumber($tel);
+        new PhoneNumber($tel);
         $this->assertTrue($results);
     } catch (ValidationException $e) {
         $this->assertFalse($results);
