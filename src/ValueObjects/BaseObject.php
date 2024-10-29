@@ -9,7 +9,7 @@ class BaseObject
 {
     private static string $validateKey = 'value';
 
-    public function __construct(protected mixed $value, bool $isValidate = true)
+    public final function __construct(protected mixed $value, bool $isValidate = true)
     {
         if ($isValidate) {
             $this->value = $this->validate($this->value);
