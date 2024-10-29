@@ -2,14 +2,16 @@
 
 namespace Aijoh\Core;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Aijoh\Core\Commands\CoreCommand;
+use Aijoh\Core\Macro\MixIn\Japanese;
 
-class CoreServiceProvider extends PackageServiceProvider
-{
-    public function configurePackage(Package $package): void
-    {
+
+class CoreServiceProvider extends PackageServiceProvider {
+    public function configurePackage( Package $package ) : void {
         /*
          * This class is a Package Service Provider
          *
@@ -21,5 +23,10 @@ class CoreServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_core_table')
             ->hasCommand(CoreCommand::class);
+    }
+
+    public function boot() {
+        Str::mixin(new Japanese());
+        Stringable::mixin(new Japanese());
     }
 }
