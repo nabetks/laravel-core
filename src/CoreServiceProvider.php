@@ -4,6 +4,8 @@ namespace Aijoh\Core;
 
 use Aijoh\Core\Commands\CoreCommand;
 use Aijoh\Core\Macro\MixIn\Japanese;
+use Aijoh\Core\Macro\MixIn\StringableMixin;
+use Aijoh\Core\Macro\MixIn\StrMixin;
 use Aijoh\Core\Macro\MixIn\Unicode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -29,10 +31,7 @@ class CoreServiceProvider extends PackageServiceProvider
 
     public function boot()
     {
-        Str::mixin(new Unicode);
-        Str::mixin(new Japanese);
-        Stringable::mixin(new Unicode);
-        Stringable::mixin(new Japanese);
-
+        Str::mixin(new StrMixin());
+        Stringable::mixin(new StringableMixin());
     }
 }
