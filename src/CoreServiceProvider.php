@@ -2,9 +2,9 @@
 
 namespace Aijoh\Core;
 
+use Aijoh\Core\Commands\CoreCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Aijoh\Core\Commands\CoreCommand;
 
 class CoreServiceProvider extends PackageServiceProvider
 {

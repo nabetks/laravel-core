@@ -2,9 +2,9 @@
 
 namespace Aijoh\Core\Tests;
 
+use Aijoh\Core\CoreServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Aijoh\Core\CoreServiceProvider;
 
 class TestCase extends Orchestra
 {
