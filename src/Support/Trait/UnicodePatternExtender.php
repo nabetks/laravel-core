@@ -18,4 +18,7 @@ trait UnicodePatternExtender {
     public static function match( string $pattern, string $subject,array &$matches = null, int $flags = 0, int $offset = 0 ) : int|false {
         return preg_match(self::replaceSpacePattern($pattern), $subject,$matches, $flags, $offset);
     }
+
+
+
 }

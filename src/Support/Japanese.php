@@ -120,7 +120,7 @@ class Japanese {
      * @param string $value
      * @return bool
      */
-    public static function hasKanji( string $value ) : bool {
+    public static function inKanji( string $value ) : bool {
         return preg_match('/\p{Han}+/u', $value) === 1;
     }
 
@@ -129,7 +129,7 @@ class Japanese {
      * @param string $value 日本語が含まれているか調べる文字列
      * @return bool
      */
-    public static function hasJapanese( string $value ) : bool {
+    public static function inJapanese( string $value ) : bool {
         return preg_match('/\p{Hiragana}+|\p{Katakana}+|\p{Han}+/u', $value) === 1;
     }
 }
