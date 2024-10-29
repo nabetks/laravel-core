@@ -27,13 +27,12 @@ class CoreServiceProvider extends PackageServiceProvider
             ->hasCommand(CoreCommand::class);
     }
 
-
     public function boot()
     {
-        Str::mixin(new Unicode());
-        Str::mixin(new Japanese());
-        Stringable::mixin(new Unicode());
-        Stringable::mixin(new Japanese());
+        Str::mixin(new Unicode);
+        Str::mixin(new Japanese);
+        Stringable::mixin(new Unicode);
+        Stringable::mixin(new Japanese);
 
     }
 }
