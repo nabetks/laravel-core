@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Aijoh\Core\Macro\MixIn;
@@ -8,9 +9,7 @@ use Illuminate\Support\Stringable;
 
 class StringableMixin
 {
-
     protected string $value;
-
 
     /**
      * ひらがな、カタカナ、半角カタカナを全角カタカナに変換
