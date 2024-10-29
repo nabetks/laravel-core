@@ -63,7 +63,7 @@ class PhoneNumber extends BaseObject
      */
     public function isMobile(): bool
     {
-        return preg_match('/^0[789]0/', $this->value) === 1;
+        return preg_match('/^0[6-9]0/', $this->value) === 1;
     }
 
     /**
