@@ -1,5 +1,7 @@
 <?php
+use Aijoh\Core\ValueObjects\Url;
 
-it('can test', function () {
-    expect(true)->toBeTrue();
+test('Url Test',function(){
+     $url = new Url('https://www.google.com');
+     expect($url->isHttps())->toBeTrue();
 });
