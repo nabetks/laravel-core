@@ -18,6 +18,7 @@ class Unicode
     {
 
         $pattern = $this->replaceSpacePattern('/\A[[:all-space:]]|[[:all-space:]]\z/u');
+
         return preg_replace($pattern, '', $value);
     }
 }
