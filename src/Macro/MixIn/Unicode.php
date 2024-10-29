@@ -14,7 +14,7 @@ class Unicode
      * @param  string  $value  前後の空白を削除する文字列又は配列
      * @return string 前後の空白を削除した文字列又は配列
      */
-    public function trimSpace(string $value): string|array
+    public function trimAllSpace(string $value): string
     {
 
         $pattern = $this->replaceSpacePattern('/\A[[:all-space:]]|[[:all-space:]]\z/u');
