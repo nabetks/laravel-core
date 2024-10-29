@@ -3,10 +3,8 @@
 namespace Aijoh\Core;
 
 use Aijoh\Core\Commands\CoreCommand;
-use Aijoh\Core\Macro\MixIn\Japanese;
 use Aijoh\Core\Macro\MixIn\StringableMixin;
 use Aijoh\Core\Macro\MixIn\StrMixin;
-use Aijoh\Core\Macro\MixIn\Unicode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Spatie\LaravelPackageTools\Package;
@@ -31,7 +29,7 @@ class CoreServiceProvider extends PackageServiceProvider
 
     public function boot()
     {
-        Str::mixin(new StrMixin());
-        Stringable::mixin(new StringableMixin());
+        Str::mixin(new StrMixin);
+        Stringable::mixin(new StringableMixin);
     }
 }
