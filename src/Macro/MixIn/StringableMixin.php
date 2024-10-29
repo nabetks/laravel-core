@@ -8,7 +8,7 @@ use Illuminate\Support\Stringable;
 class StringableMixin
 {
     private string $value;
-    
+
     /**
      * ひらがな、カタカナ、半角カタカナを全角カタカナに変換
      */
