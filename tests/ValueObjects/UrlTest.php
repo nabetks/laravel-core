@@ -18,9 +18,6 @@ test('URL Test', function ($url, $expected) {
     ['http://www.google.com', true],
 ]);
 
-
-test('URL同じかどうかのチェック',function(){
-
-})->with([
+test('URL同じかどうかのチェック', function () {})->with([
 
 ]);

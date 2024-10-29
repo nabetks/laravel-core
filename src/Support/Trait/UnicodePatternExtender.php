@@ -20,7 +20,4 @@ trait UnicodePatternExtender
     {
         return preg_match(self::replaceSpacePattern($pattern), $subject, $matches, $flags, $offset);
     }
-
-
-
 }
