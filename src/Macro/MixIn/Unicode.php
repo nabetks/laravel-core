@@ -14,13 +14,12 @@ class Unicode
      * @param  string  $value  前後の空白を削除する文字列又は配列
      * @return string 前後の空白を削除した文字列又は配列
      */
-    public static function trimSpace() : \Closure {
-        return function (string $value) : string {
+    public static function trimSpace(): \Closure
+    {
+        return function (string $value): string {
             $pattern = self::replaceSpacePattern('/\A[[:all-space:]]|[[:all-space:]]\z/u');
+
             return preg_replace($pattern, '', $value);
         };
     }
-
-
-
 }
