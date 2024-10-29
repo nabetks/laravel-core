@@ -50,7 +50,7 @@ class Japanese
     /**
      * Shift_JISの文字列をUTF-8に変換する
      *
-     * @param  string $value  Shift_JISの文字列
+     * @param  string  $value  Shift_JISの文字列
      */
     public static function encodeFromMs932(string $value): string
     {
