@@ -16,7 +16,7 @@ class Unicode
      */
     public static function trimSpace() : \Closure {
         return function (string $value) : string {
-            $pattern = $this->replaceSpacePattern('/\A[[:all-space:]]|[[:all-space:]]\z/u');
+            $pattern = self::replaceSpacePattern('/\A[[:all-space:]]|[[:all-space:]]\z/u');
             return preg_replace($pattern, '', $value);
         };
     }

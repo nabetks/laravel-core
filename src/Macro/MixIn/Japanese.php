@@ -14,7 +14,7 @@ class Japanese {
             $value = mb_convert_kana($value, 'asKV', 'UTF-8');
             $value = str_replace([ '＂', '＇', '￥', '＼' ], [ '"', "'", '\\', '\\' ], $value);
 
-            return preg_replace($this->replaceSpacePattern('/[[:all-space:]]/u'), ' ', $value);
+            return preg_replace(self::replaceSpacePattern('/[[:all-space:]]/u'), ' ', $value);
         };
     }
 
