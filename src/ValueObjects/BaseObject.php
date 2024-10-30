@@ -60,6 +60,7 @@ class BaseObject
         return $this->value;
     }
 
+
     /**
      * バリデーション後の処理
      *
