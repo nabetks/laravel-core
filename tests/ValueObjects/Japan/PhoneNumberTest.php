@@ -1,8 +1,8 @@
 <?php
 
-namespace Aijoh\Core\Tests\ValueObjects;
+namespace Aijoh\Core\Tests\ValueObjects\Japan;
 
-use Aijoh\Core\ValueObjects\PhoneNumber;
+use Aijoh\Core\ValueObjects\Japan\PhoneNumber;
 use Illuminate\Validation\ValidationException;
 
 test('電話番号フォーマット変換確認', function ($tel, $results) {

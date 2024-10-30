@@ -1,7 +1,8 @@
 <?php
 
-namespace Aijoh\Core\ValueObjects;
+namespace Aijoh\Core\ValueObjects\Japan;
 
+use Aijoh\Core\ValueObjects\BaseObject;
 use Illuminate\Support\Str;
 
 /**
