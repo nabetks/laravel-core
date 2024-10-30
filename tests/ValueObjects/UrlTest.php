@@ -17,3 +17,13 @@ test('URL Test', function ($url, $expected) {
     ['com', false],
     ['http://www.google.com', true],
 ]);
+
+
+
+test('URL プロトコルテスト', function ($url, $expected) {
+    $url = new Url($url);
+    $this->assertEquals($expected, $url->getProtocol());
+})->with([
+    ['https://www.google.com', 'https'],
+    ['http://www.google.com', 'http'],
+]);
