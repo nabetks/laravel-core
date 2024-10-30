@@ -36,7 +36,7 @@ class PhoneNumber extends BaseObject
      */
     public function getRules(): array|string|null
     {
-        return 'required|regex:/^0\d{9,10}$/';
+        return 'regex:/^0\d{9,10}$/';
     }
 
     /**

@@ -16,6 +16,8 @@ test('URL Test', function ($url, $expected) {
     ['https://www.google.com', true],
     ['com', false],
     ['http://www.google.com', true],
+    '空のURL' => ['', true],
+    'nullのURL' => [null, true],
 ]);
 
 test('URL プロトコルテスト', function ($url, $expected) {
@@ -24,4 +26,6 @@ test('URL プロトコルテスト', function ($url, $expected) {
 })->with([
     ['https://www.google.com', 'https'],
     ['http://www.google.com', 'http'],
+    ['', ''],
+    [null, ''],
 ]);
