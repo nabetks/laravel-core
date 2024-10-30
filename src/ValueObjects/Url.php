@@ -2,86 +2,101 @@
 
 namespace Aijoh\Core\ValueObjects;
 
-class Url extends BaseObject {
-
-    public function beforeValidate($value) {
+class Url extends BaseObject
+{
+    public function beforeValidate($value)
+    {
         return ! is_null($value) ? $value : '';
     }
 
     /**
      * バリデーションルールの取得
      */
-    public function getRules() : array|string|null {
+    public function getRules(): array|string|null
+    {
         return 'url';
     }
 
     /**
      * バリデーションメッセージの取得
      */
-    public function getMessages() : ?array {
+    public function getMessages(): ?array
+    {
         return [
             'url' => 'URL形式で入力してください',
         ];
     }
 
-    public function getAttribute() : string {
+    public function getAttribute(): string
+    {
         return 'URL';
     }
 
     /**
      * HTTPSかどうかの判別
      */
-    public function isHttps() : bool {
+    public function isHttps(): bool
+    {
         return $this->getProtocol() === 'https';
     }
 
     /**
      * プロトコルの取得
      */
-    public function getProtocol() : string {
-        if($this->isEmpty()) {
+    public function getProtocol(): string
+    {
+        if ($this->isEmpty()) {
             return '';
         }
+
         return parse_url($this->value, PHP_URL_SCHEME);
     }
 
     /**
      * ホストの取得
      */
-    public function getHost() : string {
-        if($this->isEmpty()) {
+    public function getHost(): string
+    {
+        if ($this->isEmpty()) {
             return '';
         }
+
         return parse_url($this->value, PHP_URL_HOST);
     }
 
     /**
      * パスの取得
      */
-    public function getPath() : string {
-        if($this->isEmpty()) {
+    public function getPath(): string
+    {
+        if ($this->isEmpty()) {
             return '';
         }
+
         return parse_url($this->value, PHP_URL_PATH);
     }
 
     /**
      * クエリの取得
      */
-    public function getQuery() : string {
-        if($this->isEmpty()) {
+    public function getQuery(): string
+    {
+        if ($this->isEmpty()) {
             return '';
         }
+
         return parse_url($this->value, PHP_URL_QUERY);
     }
 
     /**
      * フラグメントの取得
      */
-    public function getFragment() : string {
-        if($this->isEmpty()) {
+    public function getFragment(): string
+    {
+        if ($this->isEmpty()) {
             return '';
         }
+
         return parse_url($this->value, PHP_URL_FRAGMENT);
     }
 }
