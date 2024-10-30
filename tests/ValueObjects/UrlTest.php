@@ -18,8 +18,6 @@ test('URL Test', function ($url, $expected) {
     ['http://www.google.com', true],
 ]);
 
-
-
 test('URL プロトコルテスト', function ($url, $expected) {
     $url = new Url($url);
     $this->assertEquals($expected, $url->getProtocol());
