@@ -21,9 +21,9 @@ class CoreServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('core')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_core_table')
+     //       ->hasConfigFile()
+     //       ->hasViews()
+     //       ->hasMigration('create_prefecture_table')
             ->hasCommand(CoreCommand::class);
     }
 
