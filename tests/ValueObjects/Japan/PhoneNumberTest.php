@@ -3,6 +3,7 @@
 namespace Aijoh\Core\Tests\ValueObjects\Japan;
 
 use Aijoh\Core\ValueObjects\Japan\PhoneNumber;
+use Aijoh\Core\ValueObjects\Japan\PostalCode;
 use Illuminate\Validation\ValidationException;
 
 test('電話番号フォーマット変換確認', function ($tel, $results) {
@@ -54,4 +55,28 @@ test('携帯電話判別', function ($tel, $results) {
     '携帯電話(080)国際番号' => ['+818012345678', true],
     '携帯電話(070)国際番号' => ['+817012345678', true],
     '携帯電話(060)国際番号' => ['+816012345678', true],
+]);
+
+test('オブジェクトの比較',function($tel1,$tel2,$results){
+    $number1 = new PhoneNumber($tel1);
+    $number2 = new PhoneNumber($tel2);
+    $this->assertEquals($results,$number1->equals($number2));
+})->with([
+    '同じ電話番号' => ['09012345678','09012345678',true],
+    '違う電話番号' => ['09012345678','0312345678',false],
+    'nullのデータ' => ['','0312345678',false],
+    'nullのデータ2' => ['09012345678','',false],
+    'nullのデータ3' => ['','' ,true],
+]);
+
+
+test('別のオブジェクト比較',function($tel,$postal){
+    $number = new PhoneNumber($tel);
+    $postal = new PostalCode($postal);
+    $this->assertFalse($number->equals($postal));
+})->with([
+    '電話番号と郵便番号' => ['09012345678','100-0001'],
+    '電話番号とnull' => ['09012345678',null],
+    '電話番号と空' => ['09012345678',''],
+    '空の電話番号と郵便番号' => ['',''],
 ]);
