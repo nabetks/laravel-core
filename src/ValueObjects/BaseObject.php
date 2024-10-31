@@ -151,7 +151,7 @@ class BaseObject
     /**
      * 同じかどうかの判別を行う
      */
-    public function eqauls(BaseObject $other): bool
+    public function equals(BaseObject $other): bool
     {
         return $this == $other;
     }

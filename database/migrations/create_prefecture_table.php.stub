@@ -8,12 +8,13 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('core_table', function (Blueprint $table) {
+        Schema::create('prefecture', function (Blueprint $table) {
             $table->id();
 
-            // add fields
 
-            $table->timestamps();
+
+            $table->datetimes();
+
         });
     }
 };
