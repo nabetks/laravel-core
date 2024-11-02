@@ -1,6 +1,7 @@
 {
     "name": "nabetks/laravel-core",
     "description": "Laravel Core Package",
+    "version": "0.1.0",
     "keywords": [
         "AiJoh",
         "laravel",
@@ -78,9 +79,6 @@
             "aliases": {
                 "Core": "Aijoh\\Core\\Facades\\Core"
             }
-        },
-        "branch-alias": {
-            "dev-master": "0.1-dev"
         }
     },
     "minimum-stability": "dev",
