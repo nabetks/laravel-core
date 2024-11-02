@@ -24,7 +24,7 @@ class CoreServiceProvider extends PackageServiceProvider
      //       ->hasConfigFile()
      //       ->hasViews()
             ->hasMigration('create_prefecture_table')
-            ->hasCommand(JapanAreaImportCommand::class::class);
+            ->hasCommand(JapanAreaImportCommand::class);
 
     }
 
