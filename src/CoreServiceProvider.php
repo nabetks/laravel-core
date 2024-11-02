@@ -2,7 +2,6 @@
 
 namespace Aijoh\Core;
 
-use Aijoh\Core\Commands\CoreCommand;
 use Aijoh\Core\Commands\JapanAreaImportCommand;
 use Aijoh\Core\Macro\MixIn\StringableMixin;
 use Aijoh\Core\Macro\MixIn\StrMixin;

@@ -5,8 +5,8 @@ namespace Aijoh\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class JapanPrefecture extends Model {
-
+class JapanPrefecture extends Model
+{
     protected $table = 'japan_prefectures';
 
     protected $fillable = [
@@ -18,8 +18,8 @@ class JapanPrefecture extends Model {
         'order',
     ];
 
-    public function area() : BelongsTo {
+    public function area(): BelongsTo
+    {
         return $this->belongsTo(JapanArea::class);
     }
-
 }
