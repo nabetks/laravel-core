@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core;
 
-use Aijoh\Core\Commands\CoreCommand;
+use Aijoh\Core\Commands\JapanAreaImportCommand;
 use Aijoh\Core\Macro\MixIn\StringableMixin;
 use Aijoh\Core\Macro\MixIn\StrMixin;
 use Illuminate\Support\Str;
@@ -23,8 +23,9 @@ class CoreServiceProvider extends PackageServiceProvider
             ->name('core')
      //       ->hasConfigFile()
      //       ->hasViews()
-     //       ->hasMigration('create_prefecture_table')
-            ->hasCommand(CoreCommand::class);
+            ->hasMigration('create_prefecture_table')
+            ->hasCommand(JapanAreaImportCommand::class::class);
+
     }
 
     public function boot()
