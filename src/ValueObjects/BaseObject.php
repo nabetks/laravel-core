@@ -51,14 +51,14 @@ class BaseObject
      */
     protected function validate(mixed $value): mixed
     {
-        $value = $this->beforeValidate($value);
+        $value = static::beforeValidate($value);
 
-        $rules = $this->getValidationRules(self::$validateKey);
+        $rules = static::getValidationRules(self::$validateKey);
         if (empty($rules)) {
             return $value;
         }
-        $attributes = $this->getValidationAttribute(self::$validateKey);
-        $messages = $this->getValidationMessages(self::$validateKey);
+        $attributes = static::getValidationAttribute(self::$validateKey);
+        $messages = static::getValidationMessages(self::$validateKey);
 
         $results = Validator::make([self::$validateKey => $value], $rules, $messages, $attributes)->validate();
         $value = $results[self::$validateKey];
@@ -72,7 +72,7 @@ class BaseObject
      * @param  mixed  $value  バリデーション前の処理
      * @return mixed
      */
-    protected function beforeValidate($value)
+    public static function beforeValidate($value)
     {
         return $value;
     }
@@ -83,7 +83,7 @@ class BaseObject
      * @param  mixed  $value
      * @return mixed
      */
-    protected function afterValidate($value)
+    public static function afterValidate($value)
     {
         return $value;
     }
@@ -95,9 +95,9 @@ class BaseObject
      * @param  array  $beforeRules  前のルール
      * @param  array  $afterRules  後のルール
      */
-    final public function getValidationRules(string $key, array $beforeRules = [], array $afterRules = []): array|string|null
+    final public static function getValidationRules(string $key, array $beforeRules = [], array $afterRules = []): array|string|null
     {
-        $rules = $this->getRules();
+        $rules = static::getRules();
         if (is_string($rules)) {
             $rules = explode('|', $rules);
         }
@@ -116,9 +116,9 @@ class BaseObject
      * @param  string  $key  キー値
      * @param  array  $addMessages  追加のメッセージ
      */
-    final public function getValidationMessages(string $key, array $addMessages = []): array
+    final public static function getValidationMessages(string $key, array $addMessages = []): array
     {
-        $messages = array_merge($this->getMessages(), $addMessages);
+        $messages = array_merge(static::getMessages(), $addMessages);
         if (empty($messages)) {
             return [];
         }
@@ -131,9 +131,9 @@ class BaseObject
         return $results;
     }
 
-    final public function getValidationAttribute(string $key): array
+    final public static function getValidationAttribute(string $key): array
     {
-        $attribute = $this->getAttribute();
+        $attribute = static::getAttribute();
         if (empty($attribute)) {
             return [];
         }
@@ -144,7 +144,7 @@ class BaseObject
     /**
      * バリデーションルールの取得
      */
-    public function getRules(): array|string|null
+    public static function  getRules(): array|string|null
     {
         return null;
     }
@@ -152,7 +152,7 @@ class BaseObject
     /**
      * バリデーションメッセージの取得
      */
-    public function getMessages(): ?array
+    public static function getMessages(): ?array
     {
         return null;
     }
@@ -160,7 +160,7 @@ class BaseObject
     /**
      * バリデーション属性の取得
      */
-    public function getAttribute(): string
+    public static function getAttribute(): string
     {
         return '値';
     }

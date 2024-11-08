@@ -13,7 +13,7 @@ class PostalCode extends BaseObject
      * @param  string  $value  郵便番号の文字列
      * @return string
      */
-    public function beforeValidate($value)
+    public static function beforeValidate($value)
     {
         return (string) Str::of($value)->removeHorizontalBar()->normalize();
     }
@@ -21,7 +21,7 @@ class PostalCode extends BaseObject
     /**
      * バリデーションルールの取得
      */
-    public function getRules(): array|string|null
+    public static function getRules(): array|string|null
     {
         return 'regex:/^\d{7}$/';
     }
@@ -29,14 +29,14 @@ class PostalCode extends BaseObject
     /**
      * バリデーションメッセージの取得
      */
-    public function getMessages(): ?array
+    public static function getMessages(): ?array
     {
         return [
             'regex' => '郵便番号の形式が正しくありません。',
         ];
     }
 
-    public function getAttribute(): string
+    public static function getAttribute(): string
     {
         return '郵便番号';
     }
