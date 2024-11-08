@@ -12,6 +12,7 @@ trait UnicodeHorizontalBarExtender
     public static function replaceHorizontalBarPattern(string $replace, string $str): string
     {
         $replace = '['.implode('', self::$horizontalBarList).']';
+
         return str_replace(self::$horizontalBarPattern, $replace, $str);
     }
 

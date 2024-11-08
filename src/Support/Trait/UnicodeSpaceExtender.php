@@ -41,11 +41,10 @@ trait UnicodeSpaceExtender
     /**
      * 文字列の空白を置換する。
      */
-    public static function replaceSpace(string $replace,string $str): string
+    public static function replaceSpace(string $replace, string $str): string
     {
         return self::replace('/[[:all-space:]]++/u', $replace, $str);
     }
-
 
     public static function splitSpace(string $str): array
     {

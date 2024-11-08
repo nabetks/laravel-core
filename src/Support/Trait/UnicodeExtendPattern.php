@@ -82,6 +82,7 @@ trait UnicodeExtendPattern
     public static function match(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): int|false
     {
         $pattern = self::replaceExtendPattern($pattern);
+
         return preg_match($pattern, $subject, $matches, $flags, $offset);
     }
 
