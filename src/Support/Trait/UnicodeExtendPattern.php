@@ -2,7 +2,8 @@
 
 namespace Aijoh\Core\Support\Trait;
 
-trait UnicodeExtendPattern {
+trait UnicodeExtendPattern
+{
     // 空白の正規表現
     private static string $allSpacePattern = '[[:all-space:]]';
 
@@ -14,6 +15,7 @@ trait UnicodeExtendPattern {
 
     /**
      * 横棒の文字列一覧
+     *
      * @var array|string[]
      */
     public static array $horizontalBarList = [
@@ -52,7 +54,8 @@ trait UnicodeExtendPattern {
     /**
      * 横棒の正規表現の追加
      */
-    private static function replaceExtendPattern( string $pattern ) : string {
+    private static function replaceExtendPattern(string $pattern): string
+    {
         $base = [
             self::$allSpacePattern,
             self::$horizontalBarPattern,
@@ -61,48 +64,33 @@ trait UnicodeExtendPattern {
             self::$spaceRegExp,
             '['.implode('', self::$horizontalBarList).']',
         ];
+
         return str_replace($base, $replace, $pattern);
     }
 
     /**
      * 置換を行う
-     *
-     * @param string|array $pattern
-     * @param string|array $replace
-     * @param array|string $subject
-     * @param int $limit
-     * @param $count
-     * @return string
      */
-    public static function replace( string|array $pattern, string|array $replace, array|string $subject, int $limit = -1, &$count = null ) : string {
+    public static function replace(string|array $pattern, string|array $replace, array|string $subject, int $limit = -1, &$count = null): string
+    {
         return preg_replace(self::replaceExtendPattern($pattern), $replace, $subject, $limit, $count);
     }
 
     /**
      * 拡張した正規表現のマッチングを行う
-     * @param string $pattern
-     * @param string $subject
-     * @param array|null $matches
-     * @param int $flags
-     * @param int $offset
-     * @return int|false
      */
-
-    public static function match( string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0 ) : int|false {
+    public static function match(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): int|false
+    {
         return preg_match(self::replaceExtendPattern($pattern), $subject, $matches, $flags, $offset);
     }
 
     /**
      * 拡張した正規表現のマッチングを行う
-     * @param string $pattern
-     * @param string $subject
-     * @param int $limit
-     * @param int $flags
-     * @return array
      */
-    public static function split( string $pattern, string $subject, int $limit = -1, int $flags = 0 ) : array {
+    public static function split(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
+    {
         $pattern = self::replaceExtendPattern($pattern);
+
         return preg_split($pattern, $subject, $limit, $flags);
     }
-
 }

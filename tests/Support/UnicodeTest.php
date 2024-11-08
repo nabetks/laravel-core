@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core\Tests\Support;
 
-use  Aijoh\Core\Support\Unicode;
+use Aijoh\Core\Support\Unicode;
 
 $spaceChars = [
     "\u{0009}",
@@ -63,50 +63,48 @@ $spaceChars = [
 
 $spaceAllChars = implode('', $spaceChars);
 
-
-test('trimSpaceのテスト', function( $str, $expected ) {
+test('trimSpaceのテスト', function ($str, $expected) {
     $val = Unicode::trimSpace($str);
     $this->assertSame($expected, $val);
 })->with([
-             '両方の全角空白削除'               => [ '　あいうえお　', 'あいうえお' ],
-             '前方の全角空白削除'               => [ '　あいうえお', 'あいうえお' ],
-             '後方の全角空白削除'               => [ 'あいうえお　', 'あいうえお' ],
-             '削除せず'                         => [ 'あいうえお', 'あいうえお' ],
-             '半角・全角交じりの空白文字の削除' => [ ' 　 あいうえお 　', 'あいうえお' ],
-             '全ての空白文字の削除'             => [ $spaceAllChars, '' ],
-             '全ての空白文字の削除1'            => [ $spaceAllChars . 'あいうえお' . $spaceAllChars, 'あいうえお' ],
-         ]);
+    '両方の全角空白削除' => ['　あいうえお　', 'あいうえお'],
+    '前方の全角空白削除' => ['　あいうえお', 'あいうえお'],
+    '後方の全角空白削除' => ['あいうえお　', 'あいうえお'],
+    '削除せず' => ['あいうえお', 'あいうえお'],
+    '半角・全角交じりの空白文字の削除' => [' 　 あいうえお 　', 'あいうえお'],
+    '全ての空白文字の削除' => [$spaceAllChars, ''],
+    '全ての空白文字の削除1' => [$spaceAllChars.'あいうえお'.$spaceAllChars, 'あいうえお'],
+]);
 
-test('ltrimSpaceのテスト', function( $str, $expected ) {
+test('ltrimSpaceのテスト', function ($str, $expected) {
     $val = Unicode::ltrimSpace($str);
     $this->assertSame($expected, $val);
 })->with([
-             '前方の全角空白のみ削除'           => [ '　あいうえお　', 'あいうえお　' ],
-             '前方の全角空白削除'               => [ '　あいうえお', 'あいうえお' ],
-             '後方の全角空白削除せず'           => [ 'あいうえお　', 'あいうえお　' ],
-             '削除せず'                         => [ 'あいうえお', 'あいうえお' ],
-             '半角・全角交じりの空白文字の削除' => [ ' 　 あいうえお 　', 'あいうえお 　' ],
-             '全ての空白文字の削除'             => [ $spaceAllChars, '' ],
-             '前方の全角空白の削除'             => [ $spaceAllChars . 'あいうえお' . $spaceAllChars, 'あいうえお' . $spaceAllChars ],
-         ]);
+    '前方の全角空白のみ削除' => ['　あいうえお　', 'あいうえお　'],
+    '前方の全角空白削除' => ['　あいうえお', 'あいうえお'],
+    '後方の全角空白削除せず' => ['あいうえお　', 'あいうえお　'],
+    '削除せず' => ['あいうえお', 'あいうえお'],
+    '半角・全角交じりの空白文字の削除' => [' 　 あいうえお 　', 'あいうえお 　'],
+    '全ての空白文字の削除' => [$spaceAllChars, ''],
+    '前方の全角空白の削除' => [$spaceAllChars.'あいうえお'.$spaceAllChars, 'あいうえお'.$spaceAllChars],
+]);
 
-
-test('rtrimSpaceのテスト', function( $str, $expected ) {
+test('rtrimSpaceのテスト', function ($str, $expected) {
     $val = Unicode::rtrimSpace($str);
     $this->assertSame($expected, $val);
 })->with(
     [
-        '前方の全角空白削除せず'           => [ '　あいうえお　', '　あいうえお' ],
-        '前方の全角空白削除'               => [ '　あいうえお', '　あいうえお' ],
-        '後方の全角空白のみ削除'           => [ 'あいうえお　', 'あいうえお' ],
-        '削除せず'                         => [ 'あいうえお', 'あいうえお' ],
-        '半角・全角交じりの空白文字の削除' => [ ' 　 あいうえお 　', ' 　 あいうえお' ],
-        '全ての空白文字の削除'             => [ $spaceAllChars, '' ],
-        '後方の全角空白の削除'             => [ $spaceAllChars . 'あいうえお' . $spaceAllChars, $spaceAllChars . 'あいうえお' ],
+        '前方の全角空白削除せず' => ['　あいうえお　', '　あいうえお'],
+        '前方の全角空白削除' => ['　あいうえお', '　あいうえお'],
+        '後方の全角空白のみ削除' => ['あいうえお　', 'あいうえお'],
+        '削除せず' => ['あいうえお', 'あいうえお'],
+        '半角・全角交じりの空白文字の削除' => [' 　 あいうえお 　', ' 　 あいうえお'],
+        '全ての空白文字の削除' => [$spaceAllChars, ''],
+        '後方の全角空白の削除' => [$spaceAllChars.'あいうえお'.$spaceAllChars, $spaceAllChars.'あいうえお'],
     ]
 );
 
-test('空白を削除' , function($str, $expected) {
+test('空白を削除', function ($str, $expected) {
     $val = Unicode::removeSpace($str);
     $this->assertSame($expected, $val);
 })->with(
@@ -115,31 +113,28 @@ test('空白を削除' , function($str, $expected) {
     ]
 );
 
-
-test('空白で分割', function( $str, $expected ) {
+test('空白で分割', function ($str, $expected) {
     $val = Unicode::splitBlank($str);
     $this->assertSame($expected, $val);
 })->with(
     [
         '半角空白で分割' => ['あ い う え お', ['あ', 'い', 'う', 'え', 'お']],
         '全角空白で分割' => ['あ　い　う　え　お', ['あ', 'い', 'う', 'え', 'お']],
-        '様々な空白文字で分割' => ['あ　い'.$spaceAllChars. 'う 　え　お', ['あ', 'い', 'う', 'え', 'お']],
+        '様々な空白文字で分割' => ['あ　い'.$spaceAllChars.'う 　え　お', ['あ', 'い', 'う', 'え', 'お']],
     ]
 );
 
-
-
-test('横棒の置換', function( $str, $replace, $expected ) {
+test('横棒の置換', function ($str, $replace, $expected) {
     $replace = Unicode::replaceHorizontalBar($str, $replace);
     $this->assertSame($expected, $replace);
 })->with(
     [
-        '横棒の削除' => ['', '‐―ー－—⁻₋ｰ-',  '' ],
-        '横棒をハイフンに置換' => ['-', '‐―ー－—⁻₋ｰ-',  '---------' ],
+        '横棒の削除' => ['', '‐―ー－—⁻₋ｰ-',  ''],
+        '横棒をハイフンに置換' => ['-', '‐―ー－—⁻₋ｰ-',  '---------'],
     ]
 );
 
-test('横棒で分割' , function($str, $expected) {
+test('横棒で分割', function ($str, $expected) {
     $val = Unicode::splitHorizontalBar($str);
     $this->assertSame($expected, $val);
 })->with(
@@ -148,5 +143,3 @@ test('横棒で分割' , function($str, $expected) {
         '様々な横棒で分割' => ['あ-いーう-え-お', ['あ', 'い', 'う', 'え', 'お']],
     ]
 );
-
-

@@ -74,7 +74,6 @@ class StringableMixin
 
     /**
      * 文字列の横棒を削除する
-     * @return \Closure
      */
     public function removeHorizontalBar(): \Closure
     {
@@ -85,7 +84,6 @@ class StringableMixin
 
     /**
      * 横棒の置換を行う
-     * @return \Closure
      */
     public function replaceHorizontalBar(): \Closure
     {
