@@ -77,3 +77,48 @@ test('カタカナに変換', function ($base, $expected) {
         ],
     ]
 );
+
+/**
+ * ひらがなのみ判定
+ */
+test('ひらがなのみ判定',function($str,$expected){
+    $this->assertEquals($expected,Japanese::isHiragana($str));
+})->with(
+    [
+        'ひらがなのみ' => ['あいうえお',true],
+        'カタカナのみ' => ['アイウエオ',false],
+        '英数字のみ' => ['1234567890',false],
+        '記号のみ' => ['!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}',false],
+        'ひらがなとカタカナ' => ['あいうえおアイウエオ',false],
+    ]
+);
+
+/**
+ * ひらがなのみ判定
+ */
+test('カタカナのみ判定',function($str,$expected){
+    $this->assertEquals($expected,Japanese::isKatakana($str));
+})->with(
+    [
+        'ひらがなのみ' => ['あいうえお',false],
+        'カタカナのみ' => ['アイウエオカート',true],
+        '英数字のみ' => ['1234567890',false],
+        '記号のみ' => ['!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}',false],
+        'ひらがなとカタカナ' => ['あいうえおアイウエオ',false],
+    ]
+);
+
+
+test('日本語のみの判定',function($str,$expected){
+    $this->assertEquals($expected,Japanese::isJapanese($str));
+})->with(
+    [
+        'ひらがなのみ' => ['あいうえお',true],
+        'カタカナのみ' => ['アイウエオカート',true],
+        '英数字のみ'   => ['1234567890',false],
+        '記号のみ'     => ['!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}',false],
+        'ひらがなとカタカナ' => ['あいうえおアイウエオ',true],
+        '漢字・ひらがな・カタカナ' => ['あいうえおアイウエオ漢字テスト',true],
+        '空白記号入り' => ['あいうえおアイウエオ漢字 テスト',false],
+    ]
+);
