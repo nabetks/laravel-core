@@ -2,38 +2,11 @@
 
 namespace Aijoh\Core\Support;
 
-use Aijoh\Core\Support\Trait\UnicodePatternExtender;
+use Aijoh\Core\Support\Trait\UnicodeHorizontalBarExtender;
+use Aijoh\Core\Support\Trait\UnicodeSpaceExtender;
 
 class Unicode
 {
-    use UnicodePatternExtender;
-
-    /**
-     * 文字列の前後の空白を削除する。
-     */
-    public static function trimSpace(string $str): string
-    {
-        return self::replace('/\A[[:all-space:]]+|[[:all-space:]]+\z/', '', $str);
-    }
-
-    /**
-     * 文字列の前の空白を削除する。
-     */
-    public static function ltrimSpace(string $str): string
-    {
-        return self::replace('/\A[[:all-space:]]+/', '', $str);
-    }
-
-    /**
-     * 文字列の後の空白を削除する。
-     */
-    public static function rtrimSpace(string $str): string
-    {
-        return self::replace('/[[:all-space:]]+\z/', '', $str);
-    }
-
-    public static function replaceSpace(string $str): string
-    {
-        return self::replace('/[[:all-space:]]+/', ' ', $str);
-    }
+    use UnicodeHorizontalBarExtender;
+    use UnicodeSpaceExtender;
 }

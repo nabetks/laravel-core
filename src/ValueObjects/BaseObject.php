@@ -7,13 +7,30 @@ use Illuminate\Validation\ValidationException;
 
 class BaseObject
 {
+    /**
+     * オブジェクトの値
+     */
+    protected mixed $value;
+
+    /**
+     * バリデーションキー
+     */
     private static string $validateKey = 'value';
 
-    final public function __construct(protected mixed $value, bool $isValidate = true)
+    final public function __construct(mixed $value, bool $isValidate = true)
     {
         if ($isValidate) {
-            $this->value = $this->validate($this->value);
+            $value = $this->validate($value);
         }
+        $this->value = $this->formatValue($value);
+    }
+
+    /**
+     * 入力した値を内部の値にフォーマットする
+     */
+    protected function formatValue(mixed $value): mixed
+    {
+        return $value;
     }
 
     /**
@@ -57,7 +74,7 @@ class BaseObject
      */
     protected function beforeValidate($value)
     {
-        return $this->value;
+        return $value;
     }
 
     /**
