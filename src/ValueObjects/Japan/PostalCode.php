@@ -15,7 +15,7 @@ class PostalCode extends BaseObject
      */
     public function beforeValidate($value)
     {
-        return (string) Str::of($value)->normalize()->replace('-', '');
+        return (string) Str::of($value)->removeHorizontalBar()->normalize();
     }
 
     /**
@@ -44,7 +44,7 @@ class PostalCode extends BaseObject
     /**
      * ハイフン付きの郵便番号を取得
      */
-    public function getHyphen(): string
+    public function getHyphenNumber(): string
     {
         return Str::substr($this->value, 0, 3).'-'.Str::substr($this->value, 3, 4);
     }

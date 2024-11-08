@@ -20,7 +20,7 @@ class PhoneNumber extends BaseObject
      */
     protected function beforeValidate($value)
     {
-        $value = (string) Str::of($value)->normalize()->replace(['-', '(', ')'], '');
+        $value = (string) Str::of($value)->removeHorizontalBar()->normalize()->replace(['-', '(', ')'], '');
         foreach (self::$japaneseInternationalPrefix as $prefix) {
             if (Str::startsWith($value, $prefix)) {
                 $value = Str::replaceFirst($prefix, '0', $value);

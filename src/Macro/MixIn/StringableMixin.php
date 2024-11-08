@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aijoh\Core\Macro\MixIn;
 
 use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Support\Unicode;
 use Illuminate\Support\Stringable;
 
 class StringableMixin
@@ -68,6 +69,28 @@ class StringableMixin
     {
         return function (): bool {
             return Japanese::inJapanese($this->value);
+        };
+    }
+
+    /**
+     * 文字列の横棒を削除する
+     * @return \Closure
+     */
+    public function removeHorizontalBar(): \Closure
+    {
+        return function (): Stringable {
+            return new Stringable(Unicode::replaceHorizontalBar('', $this->value));
+        };
+    }
+
+    /**
+     * 横棒の置換を行う
+     * @return \Closure
+     */
+    public function replaceHorizontalBar(): \Closure
+    {
+        return function (string $replace): Stringable {
+            return new Stringable(Unicode::replaceHorizontalBar($replace, $this->value));
         };
     }
 }

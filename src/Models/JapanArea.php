@@ -14,7 +14,6 @@ class JapanArea extends Model
         'name',
         'name_kana',
         'name_en',
-
     ];
 
     public function prefectures(): HasMany
