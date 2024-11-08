@@ -8,8 +8,10 @@ use Illuminate\Support\Str;
 /**
  * 氏名の読み仮名(ひらがな、カタカナ)を管理するクラスです
  */
-class Furigana extends BaseObject {
-    public static function beforeValidate( $value ) {
+class Furigana extends BaseObject
+{
+    public static function beforeValidate($value)
+    {
         return Str::normalize($value)->replaceSpace(' ');
     }
 }

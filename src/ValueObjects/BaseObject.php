@@ -144,7 +144,7 @@ class BaseObject
     /**
      * バリデーションルールの取得
      */
-    public static function  getRules(): array|string|null
+    public static function getRules(): array|string|null
     {
         return null;
     }
