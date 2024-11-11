@@ -4,6 +4,7 @@ namespace Aijoh\Core\ValueObjects\Japan;
 
 use Aijoh\Core\ValueObjects\BaseObject;
 use Illuminate\Support\Str;
+use Aijoh\Core\Rules\PostalCode as PostalCodeRule;
 
 class PostalCode extends BaseObject {
     /**
@@ -20,19 +21,11 @@ class PostalCode extends BaseObject {
      * バリデーションルールの取得
      */
     public function getRules() : array {
-        return 'regex:/^\d{7}$/';
+        return [ new PostalCodeRule() ];
     }
 
-    /**
-     * バリデーションメッセージの取得
-     */
-    public static function getMessages() : ?array {
-        return [
-            'regex' => '郵便番号の形式が正しくありません。',
-        ];
-    }
 
-    public static function getAttribute() : string {
+    public function getAttribute() : string {
         return '郵便番号';
     }
 
