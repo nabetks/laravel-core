@@ -6,32 +6,24 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class Furigana implements ValidationRule {
-
-    public function __construct() {
-
-    }
+class Furigana implements ValidationRule
+{
+    public function __construct() {}
 
     /**
      * Run the validation rule.
-     * @param string $attribute
-     * @param mixed $value
-     * @param Closure $fail
-     * @return void
      */
-    public function validate( string $attribute, mixed $value, Closure $fail ) : void {
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
         $separate = Str::of($value)->splitBlank()->normalize()->toHiragana();
-        if ( $separate->count() !== 2 ) {
+        if ($separate->count() !== 2) {
             $fail('フリガナは姓と名の間にスペースを入れてください。');
         }
 
-        foreach ( $separate as $part ) {
-            if ( ! Str::isHiragana($part) ) {
+        foreach ($separate as $part) {
+            if (! Str::isHiragana($part)) {
                 $fail('フリガナを正しく入力してください。');
             }
         }
     }
-
-
-
 }
