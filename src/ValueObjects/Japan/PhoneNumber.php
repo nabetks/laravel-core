@@ -4,6 +4,7 @@ namespace Aijoh\Core\ValueObjects\Japan;
 
 use Aijoh\Core\ValueObjects\BaseObject;
 use Illuminate\Support\Str;
+use Aijoh\Core\Rules\PhoneNumber as PhoneNumberRule;
 
 /**
  * 日本国内の電話番号を表すクラスです。
@@ -17,7 +18,8 @@ class PhoneNumber extends BaseObject {
      * @param string $value 電話番号
      * @return mixed
      */
-    public static function beforeValidate( $value ) {
+    #[\Override]
+    public static function beforeValidate(mixed $value ) : mixed {
         $value = (string)Str::of($value)->removeHorizontalBar()->normalize()->replace([ '-', '(', ')' ], '');
         foreach ( self::$japaneseInternationalPrefix as $prefix ) {
             if ( Str::startsWith($value, $prefix) ) {
@@ -25,33 +27,14 @@ class PhoneNumber extends BaseObject {
                 break;
             }
         }
-
         return $value;
     }
 
     /**
      * 電話番号の形式をチェック
      */
-    public static function getRules() : array|string|null {
-        return 'regex:/^0\d{9,10}$/';
-    }
-
-    /**
-     * メッセージを取得
-     *
-     * @return string[]
-     */
-    public static function getMessages() : array {
-        return [
-            'regex' => '電話番号の形式が正しくありません。',
-        ];
-    }
-
-    /**
-     * 属性を取得
-     */
-    public static function getAttribute() : string {
-        return '電話番号';
+    public function getRules() : array {
+        return [ new PhoneNumberRule() ];
     }
 
     /**
