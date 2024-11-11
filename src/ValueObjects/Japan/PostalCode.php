@@ -2,6 +2,7 @@
 
 namespace Aijoh\Core\ValueObjects\Japan;
 
+use Aijoh\Core\Rules\PostalCode as PostalCodeRule;
 use Aijoh\Core\ValueObjects\BaseObject;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,7 @@ class PostalCode extends BaseObject
      * @param  string  $value  郵便番号の文字列
      * @return string
      */
-    public static function beforeValidate($value)
+    public static function beforeValidate(mixed $value): mixed
     {
         return (string) Str::of($value)->removeHorizontalBar()->normalize();
     }
@@ -21,22 +22,12 @@ class PostalCode extends BaseObject
     /**
      * バリデーションルールの取得
      */
-    public static function getRules(): array|string|null
+    public function getRules(): array
     {
-        return 'regex:/^\d{7}$/';
+        return [new PostalCodeRule];
     }
 
-    /**
-     * バリデーションメッセージの取得
-     */
-    public static function getMessages(): ?array
-    {
-        return [
-            'regex' => '郵便番号の形式が正しくありません。',
-        ];
-    }
-
-    public static function getAttribute(): string
+    public function getAttribute(): string
     {
         return '郵便番号';
     }

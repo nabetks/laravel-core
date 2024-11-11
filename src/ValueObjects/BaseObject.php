@@ -57,8 +57,8 @@ class BaseObject
         if (empty($rules)) {
             return $value;
         }
-        $attributes = static::getValidationAttribute(self::$validateKey);
-        $messages = static::getValidationMessages(self::$validateKey);
+        $attributes = $this->getValidationAttribute(self::$validateKey);
+        $messages = $this->getValidationMessages(self::$validateKey);
 
         $results = Validator::make([self::$validateKey => $value], $rules, $messages, $attributes)->validate();
         $value = $results[self::$validateKey];
@@ -70,9 +70,8 @@ class BaseObject
      * バリデーション前の処理
      *
      * @param  mixed  $value  バリデーション前の処理
-     * @return mixed
      */
-    public static function beforeValidate($value)
+    public static function beforeValidate(mixed $value): mixed
     {
         return $value;
     }
@@ -95,7 +94,7 @@ class BaseObject
      * @param  array  $beforeRules  前のルール
      * @param  array  $afterRules  後のルール
      */
-    final public static function getValidationRules(string $key, array $beforeRules = [], array $afterRules = []): array|string|null
+    final protected function getValidationRules(string $key, array $beforeRules = [], array $afterRules = []): array|string|null
     {
         $rules = static::getRules();
         if (is_string($rules)) {
@@ -116,8 +115,9 @@ class BaseObject
      * @param  string  $key  キー値
      * @param  array  $addMessages  追加のメッセージ
      */
-    final public static function getValidationMessages(string $key, array $addMessages = []): array
+    final protected function getValidationMessages(string $key, array $addMessages = []): array
     {
+
         $messages = array_merge(static::getMessages(), $addMessages);
         if (empty($messages)) {
             return [];
@@ -131,7 +131,7 @@ class BaseObject
         return $results;
     }
 
-    final public static function getValidationAttribute(string $key): array
+    final protected function getValidationAttribute(string $key): array
     {
         $attribute = static::getAttribute();
         if (empty($attribute)) {
@@ -144,15 +144,15 @@ class BaseObject
     /**
      * バリデーションルールの取得
      */
-    public static function getRules(): array|string|null
+    protected function getRules(): array
     {
-        return null;
+        return [];
     }
 
     /**
      * バリデーションメッセージの取得
      */
-    public static function getMessages(): ?array
+    protected function getMessages(): ?array
     {
         return null;
     }
@@ -160,7 +160,7 @@ class BaseObject
     /**
      * バリデーション属性の取得
      */
-    public static function getAttribute(): string
+    protected function getAttribute(): string
     {
         return '値';
     }

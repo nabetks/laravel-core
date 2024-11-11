@@ -2,19 +2,16 @@
 
 namespace Aijoh\Core\Rules;
 
+use Aijoh\Core\Support\Japanese;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Support\Str;
 
-class Furigana implements ValidationRule
+class Katakana implements ValidationRule
 {
-    public function __construct()
-    {
-        //
-    }
-
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $name = Str::splitBlak($value);
+        if (! Japanese::isKatakana($value)) {
+            $fail('aijoh-validation.katakana')->translate();
+        }
     }
 }
