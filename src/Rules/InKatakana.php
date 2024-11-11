@@ -9,9 +9,8 @@ class InKatakana implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        if (!Japanese::inKatakana($value)) {
+        if (! Japanese::inKatakana($value)) {
             $fail('aijoh-validation.in_katakana')->translate();
         }
     }
-
 }

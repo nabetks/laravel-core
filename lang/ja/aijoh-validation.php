@@ -1,10 +1,11 @@
 <?php
+
 return [
     'phone_number' => ':Attributeの形式が正しくありません。',
     'postal_code' => ':Attributeの形式が正しくありません。',
-    'prefecture'  => ':Attributeは、有効な都道府県名を指定してください。',
-    'hiragana'   => ':Attributeは、ひらがなで入力してください。',
-    'katakana'   => ':Attributeは、カタカナで入力してください。',
+    'prefecture' => ':Attributeは、有効な都道府県名を指定してください。',
+    'hiragana' => ':Attributeは、ひらがなで入力してください。',
+    'katakana' => ':Attributeは、カタカナで入力してください。',
     'in_hiragana' => ':Attributeには、ひらがなを1文字以上含めてください。',
     'in_katakana' => ':Attributeには、カタカナを1文字以上含めてください。',
     'in_japanese' => ':Attributeには、日本語(ひらがな、カタカナ、漢字)を1文字以上含めてください。',
