@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 trait ModelSort
 {
-    public function caseSort(array $ids, string $primaryKey = 'id'): string
+    public function sortIdList(array $ids, string $primaryKey = 'id'): string
     {
         $sql = 'CASE ';
         foreach ($ids as $key => $id) {

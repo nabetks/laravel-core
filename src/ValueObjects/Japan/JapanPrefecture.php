@@ -54,6 +54,20 @@ enum JapanPrefecture: string
     case KAGOSHIMA = '鹿児島県';
     case OKINAWA = '沖縄県';
 
+
+    /**
+     * 都道府県名の一覧を取得する。
+     * @return array
+     */
+    public static function getNameList() : array {
+        $results = [];
+        foreach( self::cases() as $key => $prefecture ) {
+            $results[] = $prefecture->value;
+        }
+        return $results;
+    }
+
+
     /**
      * 都道府県名からインスタンスを生成
      *
