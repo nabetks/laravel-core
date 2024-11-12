@@ -2,50 +2,44 @@
 
 namespace Aijoh\Core\ValueObjects;
 
-class Url extends BaseObject
-{
-    public function beforeValidate($value)
-    {
+class Url extends BaseObject {
+    public static function beforeValidate( mixed $value ) : mixed {
         return ! is_null($value) ? $value : '';
     }
 
     /**
      * バリデーションルールの取得
      */
-    public function getRules(): array|string|null
+    public function getRules() : array
     {
-        return 'url';
+        return ['url'];
     }
 
     /**
      * バリデーションメッセージの取得
      */
-    public function getMessages(): ?array
-    {
+    public function getMessages() : array {
         return [
             'url' => 'URL形式で入力してください',
         ];
     }
 
-    public function getAttribute(): string
-    {
+    public function getAttribute() : string {
         return 'URL';
     }
 
     /**
      * HTTPSかどうかの判別
      */
-    public function isHttps(): bool
-    {
+    public function isHttps() : bool {
         return $this->getProtocol() === 'https';
     }
 
     /**
      * プロトコルの取得
      */
-    public function getProtocol(): string
-    {
-        if ($this->isEmpty()) {
+    public function getProtocol() : string {
+        if ( $this->isEmpty() ) {
             return '';
         }
 
@@ -55,9 +49,8 @@ class Url extends BaseObject
     /**
      * ホストの取得
      */
-    public function getHost(): string
-    {
-        if ($this->isEmpty()) {
+    public function getHost() : string {
+        if ( $this->isEmpty() ) {
             return '';
         }
 
@@ -67,9 +60,8 @@ class Url extends BaseObject
     /**
      * パスの取得
      */
-    public function getPath(): string
-    {
-        if ($this->isEmpty()) {
+    public function getPath() : string {
+        if ( $this->isEmpty() ) {
             return '';
         }
 
@@ -79,9 +71,8 @@ class Url extends BaseObject
     /**
      * クエリの取得
      */
-    public function getQuery(): string
-    {
-        if ($this->isEmpty()) {
+    public function getQuery() : string {
+        if ( $this->isEmpty() ) {
             return '';
         }
 
@@ -91,9 +82,8 @@ class Url extends BaseObject
     /**
      * フラグメントの取得
      */
-    public function getFragment(): string
-    {
-        if ($this->isEmpty()) {
+    public function getFragment() : string {
+        if ( $this->isEmpty() ) {
             return '';
         }
 
