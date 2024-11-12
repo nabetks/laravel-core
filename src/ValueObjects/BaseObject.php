@@ -152,9 +152,9 @@ class BaseObject
     /**
      * バリデーションメッセージの取得
      */
-    protected function getMessages(): ?array
+    protected function getMessages(): array
     {
-        return null;
+        return [];
     }
 
     /**
