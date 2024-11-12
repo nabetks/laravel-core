@@ -19,7 +19,6 @@ class CoreCommand extends Command
         return self::SUCCESS;
     }
 
-
     private function createValidationFile(): void
     {
         $localPath = realpath(__DIR__.'/../../lang/ja/aijoh-validation.php');
@@ -29,5 +28,4 @@ class CoreCommand extends Command
         }
         File::copy($localPath, $path);
     }
-
 }

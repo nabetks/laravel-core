@@ -37,7 +37,6 @@ trait UnicodeHorizontalBarExtender
         return self::split('/[[:all-bar:]]++/u', $str);
     }
 
-
     public static function isHorizontalBar(string $str): bool
     {
         return self::i('/[[:all-bar:]]/u', $str);
