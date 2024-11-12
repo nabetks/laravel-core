@@ -228,8 +228,8 @@ class StringableMixin
      */
     public function replaceHorizontalBar(): \Closure
     {
-        return function (string $replace): string {
-            return Unicode::replaceHorizontalBar($replace, $this->value);
+        return function (string $replace): Stringable {
+            return new Stringable(Unicode::replaceHorizontalBar($replace, $this->value));
         };
     }
 
@@ -238,8 +238,8 @@ class StringableMixin
      */
     public function removeHorizontalBar(): \Closure
     {
-        return function (): string {
-            return Unicode::removeHorizontalBar($this->value);
+        return function (): Stringable {
+            return new Stringable(Unicode::removeHorizontalBar($this->value));
         };
     }
 
