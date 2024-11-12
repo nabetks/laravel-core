@@ -46,8 +46,15 @@ trait UnicodeSpaceExtender
         return self::replace('/[[:all-space:]]++/u', $replace, $str);
     }
 
+    /**
+     * 文字列を空白で分割する。
+     * @param string $str
+     * @return array
+     */
     public static function splitSpace(string $str): array
     {
         return self::split('/[[:all-space:]]++/u', $str);
     }
+
+
 }

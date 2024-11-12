@@ -2,6 +2,7 @@
 
 namespace Aijoh\Core\Macro\MixIn;
 
+use _PHPStan_6dcda722c\Nette\PhpGenerator\Closure;
 use Aijoh\Core\Support\Japanese;
 use Aijoh\Core\Support\Unicode;
 
@@ -237,10 +238,43 @@ class StrMixin
         };
     }
 
+    /**
+     * 水平方向の棒で分割する
+     * @return \Closure
+     */
     public static function splitHorizontalBar(): \Closure
     {
         return function (string $str): array {
             return Unicode::splitHorizontalBar($str);
+        };
+    }
+
+
+    /**
+     * 文字列を空白で分割する。
+     * [[:all-space:]] は、全ての空白文字を表す。
+     * [[:all-bar:]] は、全ての横棒の文字を表す。
+     */
+    public static function customReplace(): \Closure
+    {
+        return function (string|array $pattern, string|array $replace, array|string $subject, int $limit = -1, &$count = null): string {
+            return Unicode::replace($pattern, $replace, $subject, $limit, $count);
+        };
+    }
+
+
+    public static function customMatch() : \Closure {
+        return function(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): int|false
+        {
+            return Unicode::match($pattern, $subject, $matches, $flags, $offset);
+        };
+    }
+
+
+    public static function customSplit() : \Closure {
+        return function(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
+        {
+            return Unicode::split($pattern, $subject, $limit, $flags);
         };
     }
 }

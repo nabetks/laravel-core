@@ -246,10 +246,40 @@ class StringableMixin
     /**
      * 水平方向の棒で分割する
      */
-    public static function splitHorizontalBar(): \Closure
+    public function splitHorizontalBar(): \Closure
     {
         return function (): array {
             return Unicode::splitHorizontalBar($this->value);
+        };
+    }
+
+
+    /**
+     * 文字列を空白で分割する。
+     * [[:all-space:]] は、全ての空白文字を表す。
+     * [[:all-bar:]] は、全ての横棒の文字を表す。
+     */
+    public function customReplace(): \Closure
+    {
+        return function (string|array $pattern, string|array $replace, array|string $subject, int $limit = -1, &$count = null): Stringable {
+            $str = Unicode::replace($pattern, $replace, $subject, $limit, $count);
+            return new Stringable($str);
+        };
+    }
+
+
+    public function customMatch() : \Closure {
+        return function(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): int|false
+        {
+            return Unicode::match($pattern, $subject, $matches, $flags, $offset);
+        };
+    }
+
+
+    public function customSplit() : \Closure {
+        return function(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
+        {
+            return Unicode::split($pattern, $subject, $limit, $flags);
         };
     }
 }
