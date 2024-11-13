@@ -27,7 +27,10 @@ class RuleBase implements ValidationRule, ValidatorAwareRule {
     public final function validate( string $attribute, mixed $value, Closure $fail ) : void {
         $innerRules = $this->getInnerRules();
         if( ! empty($innerRules) ){
-            $this->validation($attribute, $value, $fail, $innerRules, $this->getInnerMessages());
+            $results = $this->validation($attribute, $value, $fail, $innerRules, $this->getInnerMessages());
+            if( ! $results ){
+                return;
+            }
         }
         $this->customRule($attribute, $value, $fail);
     }

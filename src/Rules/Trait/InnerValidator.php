@@ -39,7 +39,7 @@ trait InnerValidator {
      * @param array $messages
      * @return void
      */
-    protected function validation( string $attribute, mixed $value, \Closure $fail, array $rules, array $messages = [] ) : void {
+    protected function validation( string $attribute, mixed $value, \Closure $fail, array $rules, array $messages = [] ) : bool {
         $validator = \Illuminate\Support\Facades\Validator::make(
             [ $attribute => $value ],
             [ $attribute => $rules ],
@@ -49,7 +49,9 @@ trait InnerValidator {
 
         if ( $validator->fails() ) {
             $fail($validator->errors()->first());
+            return false;
         }
+        return true;
     }
 
 }
