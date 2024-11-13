@@ -29,19 +29,17 @@ class Email extends BaseObject
 
     /**
      * メールアドレスのドメインを取得
-     * @return string
      */
-    public function getDomain() : string {
+    public function getDomain(): string
+    {
         return Str::of($this->value)->after('@')->toString();
     }
 
-
     /**
      * メールアドレスのローカルパートを取得
-     * @return string
      */
-    public function getLocalPart() : string {
+    public function getLocalPart(): string
+    {
         return Str::of($this->value)->before('@')->toString();
     }
-
 }
