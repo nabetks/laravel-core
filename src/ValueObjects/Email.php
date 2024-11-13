@@ -3,6 +3,7 @@
 namespace Aijoh\Core\ValueObjects;
 
 use Aijoh\Core\Rules\EmailAddress;
+use Aijoh\Core\Rules\EmailAddressRule;
 use Illuminate\Support\Str;
 
 class Email extends BaseObject
@@ -23,7 +24,7 @@ class Email extends BaseObject
     public function getRules(): array
     {
         return [
-            new EmailAddress,
+            new EmailAddressRule(),
         ];
     }
 
