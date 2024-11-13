@@ -16,7 +16,6 @@ class RuleBase implements ValidationRule, ValidatorAwareRule
 
     /**
      * 空文字列の場合にバリデーションを行うかどうか。
-     * @var bool
      */
     public bool $implicit = false;
 
