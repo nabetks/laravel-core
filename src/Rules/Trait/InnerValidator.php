@@ -32,7 +32,7 @@ trait InnerValidator
      *
      * @return void
      */
-    protected function validation(string $attribute, mixed $value, \Closure $fail, array $rules, array $messages = []): bool
+    protected function validation(string $attribute, mixed $value, \Closure $fail, array|string $rules, array $messages = []): bool
     {
         $validator = \Illuminate\Support\Facades\Validator::make(
             [$attribute => $value],
