@@ -24,7 +24,7 @@ class PostalCode extends BaseObject
      */
     public function getRules(): array
     {
-        return [new PostalCodeRule()];
+        return [new PostalCodeRule];
     }
 
     public function getAttribute(): string
