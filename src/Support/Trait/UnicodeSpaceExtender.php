@@ -56,6 +56,6 @@ trait UnicodeSpaceExtender
 
     public static function splitBlank(string $str): array
     {
-        return self::splitSpace( $str);
+        return self::splitSpace($str);
     }
 }
