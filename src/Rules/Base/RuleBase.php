@@ -14,6 +14,10 @@ class RuleBase implements ValidationRule, ValidatorAwareRule
 {
     use InnerValidator;
 
+    /**
+     * 空文字列の場合にバリデーションを行うかどうか。
+     * @var bool
+     */
     public bool $implicit = false;
 
     /**
