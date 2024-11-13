@@ -53,4 +53,9 @@ trait UnicodeSpaceExtender
     {
         return self::split('/[[:all-space:]]++/u', $str);
     }
+
+    public static function splitBlank(string $str): array
+    {
+        return self::splitSpace( $str);
+    }
 }

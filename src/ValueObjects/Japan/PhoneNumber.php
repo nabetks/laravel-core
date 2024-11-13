@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core\ValueObjects\Japan;
 
-use Aijoh\Core\Rules\PhoneNumber as PhoneNumberRule;
+use Aijoh\Core\Rules\PhoneNumberRule as PhoneNumberRule;
 use Aijoh\Core\ValueObjects\BaseObject;
 use Illuminate\Support\Str;
 

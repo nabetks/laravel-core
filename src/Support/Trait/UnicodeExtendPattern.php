@@ -92,7 +92,6 @@ trait UnicodeExtendPattern
     public static function split(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
     {
         $pattern = self::replaceExtendPattern($pattern);
-
         return preg_split($pattern, $subject, $limit, $flags);
     }
 }
