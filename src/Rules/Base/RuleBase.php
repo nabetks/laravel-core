@@ -14,6 +14,8 @@ class RuleBase implements ValidationRule, ValidatorAwareRule
 {
     use InnerValidator;
 
+    public bool $implicit = false;
+
     /**
      * バリデーションルールを設定する。
      */
