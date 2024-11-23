@@ -1,6 +1,7 @@
 <?php
 
 namespace Aijoh\Core\ValueObjects;
+
 use Illuminate\Support\Str;
 
 
@@ -21,26 +22,35 @@ class Boolean extends BaseObject {
 
 
     public static function beforeValidate( mixed $value ) : mixed {
-        if( is_bool($value) ) {
+        if ( is_bool($value) ) {
             return (bool)$value;
         }
 
-        if( is_null($value) ) {
+        if ( is_null($value) ) {
             return false;
         }
 
 
-        if( is_int($value) ) {
+        if ( is_int($value) ) {
             return (bool)$value;
         }
 
-        if( is_string($value) ){
+        if ( is_string($value) ) {
             $format = (string)Str::of($value)->trimSpace()->lower();
-            return in_array($format, static::$falseList) ? false : true;
+            return static::isFalseString($format) ? false : true;
         }
 
         logger()->info("boolean 判別の不明な型です: $value");
         return false;
+    }
+
+    /**
+     * 文字列がfalseに該当するかをチェックする。
+     * @param string $value
+     * @return bool
+     */
+    protected static function isFalseString( string $value ) : bool {
+        return in_array($value, static::$falseList);
     }
 
 
