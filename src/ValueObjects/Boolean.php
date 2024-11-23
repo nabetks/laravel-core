@@ -1,7 +1,7 @@
 <?php
 
 namespace Aijoh\Core\ValueObjects;
-use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Str;
 
 
 class Boolean extends BaseObject {
@@ -21,10 +21,26 @@ class Boolean extends BaseObject {
 
 
     public static function beforeValidate( mixed $value ) : mixed {
-        if( is_string($value) ) {
-            return (string)Str::of($value)->trimSpace()->lower();
+        if( is_bool($value) ) {
+            return (bool)$value;
         }
-        return $value;
+
+        if( is_null($value) ) {
+            return false;
+        }
+
+
+        if( is_int($value) ) {
+            return (bool)$value;
+        }
+
+        if( is_string($value) ){
+            $format = (string)Str::of($value)->trimSpace()->lower();
+            return in_array($format, static::$falseList) ? false : true;
+        }
+
+        logger()->info("boolean 判別の不明な型です: $value");
+        return false;
     }
 
 
@@ -34,14 +50,7 @@ class Boolean extends BaseObject {
      * @return mixed
      */
     public function formatValue( mixed $value ) : mixed {
-        return match($value) {
-            is_bool($value) => $value,
-            is_null($value) => false,
-            is_float($value) => $value !== 0.0,
-            is_int($value) || is_numeric($value) => (int)$value !== 0,
-            is_string($value) => Str::of($value)->trimSpace()->lower()->in(static::$falseList),
-            default => false,
-        };
+        return static::beforeValidate($value);
     }
 
     /**
