@@ -39,7 +39,7 @@ class Japanese
      */
     public static function encodeTo(string $value, string $encode): string
     {
-        return mb_convert_encoding($value, 'UTF-8', $encode);
+        return mb_convert_encoding($value, $encode,'UTF-8' );
     }
 
     /**
@@ -47,7 +47,7 @@ class Japanese
      */
     public static function encodeForm(string $value, string $encode): string
     {
-        return mb_convert_encoding($value, $encode, 'UTF-8');
+        return mb_convert_encoding($value, 'UTF-8', $encode);
     }
 
     /**
@@ -189,7 +189,7 @@ class Japanese
      */
     public static function isEncodableToMs932(string $value): bool
     {
-        return self::isEncodable($value, 'SJIS-win');
+        return self::isEncodable($value, 'MS932');
     }
 
     /**
@@ -210,7 +210,6 @@ class Japanese
     private static function isEncodable(string $value, string $encode): bool
     {
         $encodeString = self::encodeTo($value, $encode);
-
         return $value === self::encodeForm($encodeString, $encode);
     }
 }
