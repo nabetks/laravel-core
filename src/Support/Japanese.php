@@ -212,23 +212,26 @@ class Japanese
     private static function isEncodable(string $value, string $encode): bool
     {
         $encodeString = self::encodeTo($value, $encode);
+
         return $value === self::encodeForm($encodeString, $encode);
     }
 
-
     /**
      * 指定のエンコードの文字列をUTF-8に変換する
-     * @param string $value UTF-8の文字列
-     * @param string $encode 変換後のエンコード
+     *
+     * @param  string  $value  UTF-8の文字列
+     * @param  string  $encode  変換後のエンコード
      * @return int バイト数
+     *
      * @throws EncodingException
      */
-    public static function getEncodeByte(string $value,string $encode) : int {
+    public static function getEncodeByte(string $value, string $encode): int
+    {
         $from = static::encodeTo($value, $encode);
         $reEncodeString = static::encodeForm($from, $encode);
 
-        if( $reEncodeString !== $from ) {
-            throw new EncodingException("UTF-8",$encode);
+        if ($reEncodeString !== $from) {
+            throw new EncodingException('UTF-8', $encode);
         }
 
         return strlen($from);
