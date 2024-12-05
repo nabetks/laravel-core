@@ -2,10 +2,10 @@
 
 namespace Aijoh\Core\Rules;
 
-use Aijoh\Core\Rules\Base\RuleBase;
+use Aijoh\Core\Rules\Base\BaseRule;
 use Aijoh\Core\Support\Japanese;
 
-class InKatakanaRule extends RuleBase
+class InKatakanaRule extends BaseRule
 {
     protected function customRule(string $attribute, mixed $value, \Closure $fail): void
     {

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Validation\ValidatorAwareRule;
 /**
  * Class RuleBase
  */
-class RuleBase implements ValidationRule, ValidatorAwareRule
+class BaseRule implements ValidationRule, ValidatorAwareRule
 {
     use InnerValidator;
 

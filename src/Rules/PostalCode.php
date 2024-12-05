@@ -2,10 +2,10 @@
 
 namespace Aijoh\Core\Rules;
 
-use Aijoh\Core\Rules\Base\RuleBase;
+use Aijoh\Core\Rules\Base\BaseRule;
 use Illuminate\Support\Str;
 
-class PostalCode extends RuleBase
+class PostalCode extends BaseRule
 {
     protected function customRule(string $attribute, mixed $value, \Closure $fail): void
     {

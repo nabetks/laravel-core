@@ -2,11 +2,11 @@
 
 namespace Aijoh\Core\Rules;
 
-use Aijoh\Core\Rules\Base\RuleBase;
+use Aijoh\Core\Rules\Base\BaseRule;
 use Aijoh\Core\Rules\Trait\InnerValidator;
 use Illuminate\Validation\Validator as Validation;
 
-class EmailAddressRule extends RuleBase
+class EmailAddressRule extends BaseRule
 {
     use InnerValidator;
 

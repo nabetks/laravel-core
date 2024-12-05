@@ -2,10 +2,10 @@
 
 namespace Aijoh\Core\Rules;
 
-use Aijoh\Core\Rules\Base\RuleBase;
+use Aijoh\Core\Rules\Base\BaseRule;
 use Illuminate\Support\Str;
 
-class PhoneNumberRule extends RuleBase
+class PhoneNumberRule extends BaseRule
 {
     protected function customRule(string $attribute, mixed $value, \Closure $fail): void
     {
