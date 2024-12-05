@@ -2,6 +2,8 @@
 
 namespace Aijoh\Core\Support;
 
+use Aijoh\Core\Exception\EncodingException;
+
 class Japanese
 {
     /**
@@ -55,7 +57,7 @@ class Japanese
      */
     public static function encodeToMs932(string $value): string
     {
-        return static::encodeTo($value, 'SJIS-win');
+        return static::encodeTo($value, 'MS932');
     }
 
     /**
@@ -65,7 +67,7 @@ class Japanese
      */
     public static function encodeFromMs932(string $value): string
     {
-        return static::encodeForm($value, 'SJIS-win');
+        return static::encodeForm($value, 'MS932');
     }
 
     /**
@@ -210,7 +212,25 @@ class Japanese
     private static function isEncodable(string $value, string $encode): bool
     {
         $encodeString = self::encodeTo($value, $encode);
-
         return $value === self::encodeForm($encodeString, $encode);
+    }
+
+
+    /**
+     * 指定のエンコードの文字列をUTF-8に変換する
+     * @param string $value UTF-8の文字列
+     * @param string $encode 変換後のエンコード
+     * @return int バイト数
+     * @throws EncodingException
+     */
+    public static function getEncodeByte(string $value,string $encode) : int {
+        $from = static::encodeTo($value, $encode);
+        $reEncodeString = static::encodeForm($from, $encode);
+
+        if( $reEncodeString !== $from ) {
+            throw new EncodingException("UTF-8",$encode);
+        }
+
+        return strlen($from);
     }
 }
