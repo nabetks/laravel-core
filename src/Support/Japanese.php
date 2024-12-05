@@ -186,31 +186,31 @@ class Japanese
 
     /**
      * UTF-8の文字列がShift_JISに変換可能か判定する
-     * @param string $value
-     * @return bool
      */
-    public static function isEncodableToMs932(string $value) : bool {
+    public static function isEncodableToMs932(string $value): bool
+    {
         return self::isEncodable($value, 'SJIS-win');
     }
 
     /**
      * UTF-8の文字列がShift_JISに変換可能か判定する
-     * @param string $value
-     * @return bool
      */
-    public static function isEncodableToEucJp(string $value) : bool {
+    public static function isEncodableToEucJp(string $value): bool
+    {
         return self::isEncodable($value, 'EUC-JP');
     }
 
-
     /**
      * UTF-8の文字列が指定のエンコードに変換可能か判定する
-     * @param string $value 変換する文字列
-     * @param string $encode 変換先のエンコード
+     *
+     * @param  string  $value  変換する文字列
+     * @param  string  $encode  変換先のエンコード
      * @return bool 全て変換可能な文字の場合はtrue 変換不可能な文字が入っていた場合はfalse
      */
-    private static function isEncodable(string $value,string $encode) : bool {
+    private static function isEncodable(string $value, string $encode): bool
+    {
         $encodeString = self::encodeTo($value, $encode);
+
         return $value === self::encodeForm($encodeString, $encode);
     }
 }
