@@ -2,6 +2,7 @@
 
 namespace Aijoh\Core\Tests\Support;
 
+use Aijoh\Core\Exception\EncodingException;
 use Aijoh\Core\Support\Japanese;
 
 test('normalize テスト', function( $base, $expected ) {
@@ -135,3 +136,24 @@ test('文字コード変換可能かのチェック', function( $str, $expcted )
     ]
 );
 
+test('エンコード変換後のバイト数チェック' ,function($encode,$str,$expected,$exception){
+    try{
+        $bytes = Japanese::getEncodeByte($str, $encode);
+        $this->assertEquals($expected, $bytes);
+    }catch(EncodingException $e){
+        $this->assertEquals($exception, true);
+    }
+
+})->with(
+    [
+        "EUC-JPでのバイト数チェック" => ['EUC-JP', 'あ', 2, false],
+        'MS932でのバイト数チェック' => ['MS932', 'あ', 2, false],
+        'EUC-JPでひらがなカタカナ交じりのバイト数チェック' => ['EUC-JP', 'あいうえおアイウエオ', 20, false],
+        'MS932でひらがなカタカナ交じりのバイト数チェック' => ['MS932', 'あいうえおアイウエオ', 20, false],
+        'UTF-8でのバイト数チェック' => ['UTF-8', 'あ', 3, false],
+        'MS932半角、全角交じりのバイト数' => ['MS932', 'あいうえおｱｲｳｴｵ1234567890', 25, false],
+        'EUC-JP半角、全角交じりのバイト数' => ['EUC-JP', 'あいうえおZDFGR1234567890', 25, false],
+        'MS932変換エラー' => ['MS932', '𠀋', 0, true],
+        'EUC-JP変換エラー' => ['EUC-JP', '𠀋', 0, true],
+    ]
+);
