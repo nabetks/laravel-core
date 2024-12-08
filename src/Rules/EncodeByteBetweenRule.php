@@ -47,6 +47,7 @@ class EncodeByteBetweenRule extends BaseRule
                     'encode' => $this->encodingTo,
                 ]
             );
+
             return;
         }
     }
