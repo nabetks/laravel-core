@@ -34,7 +34,7 @@ class EncodeByteBetweenRule extends BaseRule
                     [
                         'min' => $this->min,
                         'max' => $this->max,
-                        'encoding' => $this->encodingTo,
+                        'encode' => $this->encodingTo,
                     ]
                 );
 
@@ -44,7 +44,7 @@ class EncodeByteBetweenRule extends BaseRule
         } catch (EncodingException $ex) {
             $fail('aijoh-validation.encode_to')->translate(
                 [
-                    'encoding' => $this->encodingTo,
+                    'encode' => $this->encodingTo,
                 ]
             );
             return;

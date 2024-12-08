@@ -24,7 +24,7 @@ class EncodeByteMaxRule extends BaseRule
                 $fail('aijoh-validation.encode_byte_max')->translate(
                     [
                         'max' => $this->max,
-                        'encoding' => $this->encodingTo,
+                        'encode' => $this->encodingTo,
                     ]
                 );
 
@@ -34,7 +34,7 @@ class EncodeByteMaxRule extends BaseRule
         } catch (EncodingException $ex) {
             $fail('aijoh-validation.encode_to')->translate(
                 [
-                    'encoding' => $this->encodingTo,
+                    'encode' => $this->encodingTo,
                 ]
             );
 
