@@ -8,5 +8,4 @@ class MS932ByteMaxRule extends EncodeByteMaxRule
     {
         parent::__construct('MS932', $max);
     }
-
 }
