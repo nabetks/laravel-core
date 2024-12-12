@@ -11,7 +11,7 @@ class EncodeByteBetweenRule extends BaseRule
 {
     public function __construct(private readonly string $encodingTo, private int $min, private int $max)
     {
-        if ($this->min <= 0) {
+        if ($this->min < 0) {
             throw new \Exception('minは0以上である必要があります');
         }
 
