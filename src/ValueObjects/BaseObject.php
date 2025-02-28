@@ -2,7 +2,6 @@
 
 namespace Aijoh\Core\ValueObjects;
 
-use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
