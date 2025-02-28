@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class BaseObject {
+class BaseObject implements \JsonSerializable {
     /**
      * オブジェクトの値
      */
@@ -166,6 +166,15 @@ class BaseObject {
      * @return string
      */
     public function value() {
+        return $this->value;
+    }
+
+
+    /**
+     * JSONシリアライズを行う
+     * @return mixed
+     */
+    public function jsonSerialize() : mixed {
         return $this->value;
     }
 
