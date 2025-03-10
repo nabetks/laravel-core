@@ -47,28 +47,25 @@ class StrMixin
         };
     }
 
-
     /**
      * UTF-8の文字列をEUC-JPに変換してバイト数を取得する。
-     * @return \Closure
      */
-    public static function getEucByte() : \Closure {
-        return function( string $str ) : int {
-            return Japanese::getEncodeByte($str,"EUC-JP");
+    public static function getEucByte(): \Closure
+    {
+        return function (string $str): int {
+            return Japanese::getEncodeByte($str, 'EUC-JP');
         };
     }
 
-
     /**
      * UTF-8の文字列をEUC-JPに変換してバイト数を取得する。
-     * @return \Closure
      */
-    public static function getMS932Byte() : \Closure {
-        return function( string $str ) : int {
-            return Japanese::getEncodeByte($str,"MS932");
+    public static function getMS932Byte(): \Closure
+    {
+        return function (string $str): int {
+            return Japanese::getEncodeByte($str, 'MS932');
         };
     }
-
 
     /**
      * MS932の文字列をUTF-8に変換する
