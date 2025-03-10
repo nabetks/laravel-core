@@ -50,7 +50,7 @@ class StrMixin
     /**
      * UTF-8の文字列をEUC-JPに変換してバイト数を取得する。
      */
-    public static function getEucByte(): \Closure
+    public static function getEucBytes(): \Closure
     {
         return function (string $str): int {
             return Japanese::getEncodeByte($str, 'EUC-JP');
@@ -60,7 +60,7 @@ class StrMixin
     /**
      * UTF-8の文字列をEUC-JPに変換してバイト数を取得する。
      */
-    public static function getMS932Byte(): \Closure
+    public static function getMS932Bytes(): \Closure
     {
         return function (string $str): int {
             return Japanese::getEncodeByte($str, 'MS932');
