@@ -1,6 +1,6 @@
 <?php
 
-namespace Aijoh\Core\Support\Trait;
+namespace Aijoh\Core\Supports\Encoding\Trait;
 
 trait UnicodeExtendPattern
 {

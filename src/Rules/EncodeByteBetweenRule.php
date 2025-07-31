@@ -4,7 +4,7 @@ namespace Aijoh\Core\Rules;
 
 use Aijoh\Core\Exception\EncodingException;
 use Aijoh\Core\Rules\Base\BaseRule;
-use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Supports\Encoding\Japanese;
 use Closure;
 
 class EncodeByteBetweenRule extends BaseRule

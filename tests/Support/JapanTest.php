@@ -3,7 +3,7 @@
 namespace Aijoh\Core\Tests\Support;
 
 use Aijoh\Core\Exception\EncodingException;
-use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Supports\Encoding\Japanese;
 
 test('normalize テスト', function ($base, $expected) {
     $this->assertEquals($expected, Japanese::normalize($base));

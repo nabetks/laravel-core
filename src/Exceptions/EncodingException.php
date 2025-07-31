@@ -1,6 +1,6 @@
 <?php
 
-namespace Aijoh\Core\Exception;
+namespace Aijoh\Core\Exceptions;
 
 class EncodingException extends \Exception
 {

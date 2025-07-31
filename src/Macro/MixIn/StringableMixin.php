@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aijoh\Core\Macro\MixIn;
 
-use Aijoh\Core\Support\Japanese;
-use Aijoh\Core\Support\Unicode;
+use Aijoh\Core\Supports\Encoding\Japanese;
+use Aijoh\Core\Supports\Encoding\Unicode;
 use Illuminate\Support\Stringable;
 
 class StringableMixin

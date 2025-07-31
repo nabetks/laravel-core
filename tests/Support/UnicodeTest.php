@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core\Tests\Support;
 
-use Aijoh\Core\Support\Unicode;
+use Aijoh\Core\Supports\Encoding\Unicode;
 
 $spaceChars = [
     "\u{0009}",

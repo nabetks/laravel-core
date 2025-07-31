@@ -1,6 +1,6 @@
 <?php
 
-namespace Aijoh\Core\Support;
+namespace Aijoh\Core\Supports\Encoding;
 
 use Aijoh\Core\Exception\EncodingException;
 

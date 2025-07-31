@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core\Rules;
 
-use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Supports\Encoding\Japanese;
 
 class EncodeToMS932Rule
 {

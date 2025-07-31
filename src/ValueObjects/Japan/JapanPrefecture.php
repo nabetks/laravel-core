@@ -2,7 +2,7 @@
 
 namespace Aijoh\Core\ValueObjects\Japan;
 
-use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Supports\Encoding\Japanese;
 
 enum JapanPrefecture: string
 {

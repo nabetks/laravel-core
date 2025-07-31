@@ -3,7 +3,7 @@
 namespace Aijoh\Core\Rules;
 
 use Aijoh\Core\Rules\Base\BaseRule;
-use Aijoh\Core\Support\Japanese;
+use Aijoh\Core\Supports\Encoding\Japanese;
 
 class InKatakanaRule extends BaseRule
 {

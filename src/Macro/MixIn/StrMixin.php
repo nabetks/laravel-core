@@ -2,8 +2,8 @@
 
 namespace Aijoh\Core\Macro\MixIn;
 
-use Aijoh\Core\Support\Japanese;
-use Aijoh\Core\Support\Unicode;
+use Aijoh\Core\Supports\Encoding\Japanese;
+use Aijoh\Core\Supports\Encoding\Unicode;
 
 class StrMixin
 {
