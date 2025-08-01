@@ -11,12 +11,6 @@ use Aijoh\Core\Supports\Encoding\EncodingValidator;
  */
 class FileEncodingValidator
 {
-    public static function check()
-    {
-        $list = mb_list_encodings();
-
-    }
-
     /**
      * ファイルのエンコーディングを検証する
      *
