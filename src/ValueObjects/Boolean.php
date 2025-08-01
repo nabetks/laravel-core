@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 class Boolean extends BaseObject
 {
-    protected static $falseList = [
+    protected static array $falseList = [
         'false',
         '0',
         'off',

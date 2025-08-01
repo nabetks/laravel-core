@@ -10,7 +10,7 @@ class BaseObject implements \JsonSerializable
     /**
      * オブジェクトの値
      */
-    protected mixed $value;
+    protected readonly mixed $value;
 
     /**
      * バリデーションキー

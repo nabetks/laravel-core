@@ -1,6 +1,6 @@
 <?php
 
-namespace Aijoh\Core\Tests\Support;
+namespace Aijoh\Core\Tests\Supports;
 
 use Aijoh\Core\Exception\EncodingException;
 use Aijoh\Core\Supports\Encoding\Japanese;
