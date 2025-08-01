@@ -2,8 +2,6 @@
 
 namespace Aijoh\Core\Exceptions;
 
-use Exception;
-
 /**
  * ファイルのエンコーディングが指定されたエンコーディングと一致しない場合にスローされる例外
  */
@@ -22,8 +20,8 @@ class InvalidFileEncodingException extends FileException
     /**
      * コンストラクタ
      *
-     * @param string $filePath ファイルパス
-     * @param string $encoding 期待されるエンコーディング
+     * @param  string  $filePath  ファイルパス
+     * @param  string  $encoding  期待されるエンコーディング
      */
     public function __construct(string $filePath, string $encoding)
     {
@@ -36,8 +34,6 @@ class InvalidFileEncodingException extends FileException
 
     /**
      * ファイルパスを取得
-     *
-     * @return string
      */
     public function getFilePath(): string
     {
@@ -46,8 +42,6 @@ class InvalidFileEncodingException extends FileException
 
     /**
      * 期待されるエンコーディングを取得
-     *
-     * @return string
      */
     public function getExpectedEncoding(): string
     {

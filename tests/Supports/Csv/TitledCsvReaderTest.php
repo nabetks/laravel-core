@@ -1,13 +1,13 @@
 <?php
 
-use Aijoh\Core\Supports\Csv\TitledCsvReader;
-use Aijoh\Core\Exceptions\IOException;
 use Aijoh\Core\Exceptions\FileNotFoundException;
 use Aijoh\Core\Exceptions\InvalidFileEncodingException;
+use Aijoh\Core\Exceptions\IOException;
+use Aijoh\Core\Supports\Csv\TitledCsvReader;
 
-test('タイトル行を持つCSVファイルを正しく読み込める', function($encoding) {
+test('タイトル行を持つCSVファイルを正しく読み込める', function ($encoding) {
     $csvFile = "/test_titled_csv_{$encoding}.csv";
-    $csvText = <<< __END__
+    $csvText = <<< '__END__'
 名前,年齢,住所
 山田太郎,30,東京都
 佐藤花子,25,大阪府
@@ -53,24 +53,24 @@ __END__;
     'EUC-JP',
 ]);
 
-test('存在しないファイルを指定した場合にFileNotFoundExceptionが発生する', function() {
-    expect(fn() => new TitledCsvReader('/not_existing_file.csv'))
+test('存在しないファイルを指定した場合にFileNotFoundExceptionが発生する', function () {
+    expect(fn () => new TitledCsvReader('/not_existing_file.csv'))
         ->toThrow(FileNotFoundException::class);
 });
 
-test('タイトル行が空のCSVファイルを読み込むとIOExceptionが発生する', function() {
-    $csvFile = "/test_empty_csv.csv";
+test('タイトル行が空のCSVファイルを読み込むとIOExceptionが発生する', function () {
+    $csvFile = '/test_empty_csv.csv';
     file_put_contents($csvFile, '');
 
-    expect(fn() => new TitledCsvReader($csvFile))
+    expect(fn () => new TitledCsvReader($csvFile))
         ->toThrow(IOException::class, 'タイトル行の読み込みに失敗しました。');
 
     unlink($csvFile);
 });
 
-test('インデックスを使って値を取得できる', function() {
-    $csvFile = "/test_titled_csv_index.csv";
-    $csvText = <<< __END__
+test('インデックスを使って値を取得できる', function () {
+    $csvFile = '/test_titled_csv_index.csv';
+    $csvText = <<< '__END__'
 名前,年齢,住所
 山田太郎,30,東京都
 __END__;
@@ -87,9 +87,9 @@ __END__;
     unlink($csvFile);
 });
 
-test('異なる区切り文字とエンクロージャーを使用したCSVファイルを読み込める', function() {
-    $csvFile = "/test_titled_csv_delimiter.csv";
-    $csvText = <<< __END__
+test('異なる区切り文字とエンクロージャーを使用したCSVファイルを読み込める', function () {
+    $csvFile = '/test_titled_csv_delimiter.csv';
+    $csvText = <<< '__END__'
 "名前";"年齢";"住所"
 "山田太郎";"30";"東京都"
 __END__;
@@ -109,9 +109,9 @@ __END__;
     unlink($csvFile);
 });
 
-test('タイトル行の列数より少ない列数のデータ行を読み込める', function() {
-    $csvFile = "/test_titled_csv_less_columns.csv";
-    $csvText = <<< __END__
+test('タイトル行の列数より少ない列数のデータ行を読み込める', function () {
+    $csvFile = '/test_titled_csv_less_columns.csv';
+    $csvText = <<< '__END__'
 名前,年齢,住所,電話番号
 山田太郎,30,東京都
 佐藤花子,25
@@ -140,16 +140,16 @@ __END__;
     unlink($csvFile);
 });
 
-test('無効な文字エンコーディングを指定した場合にInvalidFileEncodingExceptionが発生する', function() {
-    $csvFile = "/test_titled_csv_encoding.csv";
-    $csvText = <<< __END__
+test('無効な文字エンコーディングを指定した場合にInvalidFileEncodingExceptionが発生する', function () {
+    $csvFile = '/test_titled_csv_encoding.csv';
+    $csvText = <<< '__END__'
 名前,年齢,住所
 山田太郎,30,東京都
 __END__;
 
     file_put_contents($csvFile, $csvText);
 
-    expect(fn() => new TitledCsvReader($csvFile, 'INVALID_ENCODING'))
+    expect(fn () => new TitledCsvReader($csvFile, 'INVALID_ENCODING'))
         ->toThrow(InvalidFileEncodingException::class);
 
     unlink($csvFile);

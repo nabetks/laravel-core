@@ -61,7 +61,7 @@ test('glob()でパターンに一致するタイトルの値を取得できる',
 
     expect($row->glob('user_*'))->toBe([
         'user_name' => '山田太郎',
-        'user_age' => '30'
+        'user_age' => '30',
     ]);
 });
 
@@ -73,7 +73,7 @@ test('match()で正規表現パターンに一致するタイトルの値を取�
 
     expect($row->match('/^user_/'))->toBe([
         'user_name' => '山田太郎',
-        'user_age' => '30'
+        'user_age' => '30',
     ]);
 });
 
