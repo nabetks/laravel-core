@@ -2,13 +2,21 @@
 
 namespace Aijoh\Core\Supports\File;
 
+use Aijoh\Core\Exceptions\EncodingException;
 use Aijoh\Core\Exceptions\FileNotFoundException;
 use Aijoh\Core\Exceptions\IOException;
+use Aijoh\Core\Supports\Encoding\EncodingValidator;
 
 /**
  * ファイルに記載されている文字のエンコーディングのチェックを行うクラス
  */
 class FileEncodingValidator {
+
+
+    public static function check() {
+        $list = mb_list_encodings();
+
+    }
 
     /**
      * ファイルのエンコーディングを検証する
@@ -23,13 +31,17 @@ class FileEncodingValidator {
         if ( ! file_exists($filePath)  ) {
             throw new FileNotFoundException($filePath);
         }
+
         if ( ! is_readable($filePath) ) {
             throw new IOException($filePath.' is not readable');
         }
 
-        $content = file_get_contents($filePath);
-        $detectedEncoding = mb_detect_encoding($content, $encoding, true);
+        $canonical = EncodingValidator::getCanonicalName($encoding);
+        if($canonical === null ){
+            return false;
+        }
 
-        return $detectedEncoding === $encoding;
+        $content = file_get_contents($filePath);
+        return mb_check_encoding($content, $canonical);
     }
 }

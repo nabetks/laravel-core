@@ -6,12 +6,20 @@ use Aijoh\Core\Exceptions\FileNotFoundException;
 use Aijoh\Core\Exceptions\InvalidFileEncodingException;
 use Aijoh\Core\Exceptions\IOException;
 use Aijoh\Core\Supports\File\FileEncodingValidator;
+use SplFileObject;
 
+/**
+ * CSVファイルを取り扱うためのクラス。このクラスはファイルのエンコーディング検証、SplFileObjectを使った
+ * CSVファイルの読込処理、文字コード変換処理などを提供する。
+ */
 class CsvReader {
 
     public const string DEFAULT_ENCODING = 'UTF-8';
 
     private ?\SplFileObject $splFileObject;
+
+
+    private static array $emptyLine = [null];
 
     /**
      *
@@ -35,18 +43,13 @@ class CsvReader {
 
     /**
      * パラメータのバリデーションを行う。
-     * @return void
      * @throws FileNotFoundException 指定したファイルが存在しない場合の例外
-     * @throws InvalidFileEncodingException ファイルの文字コードが指定した文字コード以外の場合に出される例外
      * @throws IOException ファイルの読み込みが出来ない場合の例外
-     */
-    private function validateParameter() {
+     * @throws InvalidFileEncodingException ファイルの文字コードが指定した文字コード以外の場合に出される例外
+    */
+    private function validateParameter() : void {
         if ( ! file_exists($this->filePath) ) {
             throw new FileNotFoundException($this->filePath);
-        }
-
-        if( ! is_readable($this->filePath) ) {
-            throw new IOException("{$this->filePath} is not readable");
         }
 
         if ( ! FileEncodingValidator::validate($this->filePath, $this->encoding) ) {
@@ -61,42 +64,39 @@ class CsvReader {
      */
     private function buildSplFileObject() : \SplFileObject {
         if ( strtoupper($this->encoding) === 'UTF-8' ) {
-            return $this->createSplFileObject($this->filePath);
+            return $this->setSplFileObjectOption(new \SplFileObject($this->filePath, 'r'));
         }
-        $resource = $this->convertFileEncoding();
-        return $this->createSplFileObject($resource);
+        $object = $this->getEncodingSplFileObject();
+        return $this->setSplFileObjectOption($object);
     }
 
 
     /**
      * 指定されたパスのCSVファイルを読み込むSplFileObjectを作成する
-     * @param string $path ファイルのパス
+     * @param SplFileObject $object
      * @return \SplFileObject 作成されたSplFileObjectインスタンス
      */
-    private function createSplFileObject( string $path ) : \SplFileObject {
-        $file = new \SplFileObject($path, 'r');
-        $file->setFlags(\SplFileObject::READ_CSV);
-        $file->setCsvControl($this->delimiter, $this->enclosure);
-        return $file;
+    private function setSplFileObjectOption( \SplFileObject $object ) : \SplFileObject {
+        $object->setFlags(\SplFileObject::READ_CSV);
+        $object->setCsvControl($this->delimiter, $this->enclosure);
+        return $object;
     }
 
 
     /**
      * UTF-8以外の文字コードで記載されているファイルをUTF-8に変換して
      * 一時ファイルに書き込み書き込んだuriを返す。
-     * @return string
+     * @return SplFileObject
      */
-    private function convertFileEncoding() : string {
+    private function getEncodingSplFileObject() : \SplFileObject {
         $resource = fopen($this->filePath, 'rb');
-        $tmpFile = tmpfile();
-
         stream_filter_append($resource, "convert.iconv.{$this->encoding}/UTF-8");
 
-        while ( ( $line = fgets($resource) ) !== false ) {
-            fwrite($tmpFile, $line);
-        }
 
-        return stream_get_meta_data($tmpFile)['uri'];
+        $object = new \SplTempFileObject();
+        $object->fwrite(stream_get_contents($resource));
+        $object->rewind();
+        return $object;
     }
 
 
@@ -124,7 +124,11 @@ class CsvReader {
      * @return array|false
      */
     public function getCsv() : array | false {
-        return $this->splFileObject->fgetcsv();
+        $results = $this->splFileObject->fgetcsv();
+        if( $results === self::$emptyLine ){
+            return false;
+        }
+        return $results;
     }
 
     /**
